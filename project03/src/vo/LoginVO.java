@@ -5,7 +5,9 @@ public class LoginVO {
 	private String password;
 	private String name;
 	
-	
+	public LoginVO() {
+		
+	}
 	public String getId() {
 		return id;
 	}

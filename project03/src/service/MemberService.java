@@ -112,4 +112,18 @@ public class MemberService {
 		}
 			return members;
 	}
+
+
+	public boolean SearchPhoneNum(String phonenum) {
+		PhonebookDAO pDao = new PhonebookDAO();
+		boolean answer = pDao.SearchPhoneNum(phonenum);
+		return answer;
+	}
+
+
+	public boolean SearchId(String id) {
+		PhonebookDAO pDao = new PhonebookDAO();
+		boolean answer = pDao.SearchId(id);
+		return answer;
+	}
 }

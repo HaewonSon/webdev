@@ -41,7 +41,6 @@ public class PhoneBookInsertServlet extends HttpServlet {
 			, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 //		회원가입 처리 : insert
-//		request에서 입력데이터 추출 -> 서비스단 -> DAO단, insert 
 		String name = request.getParameter("name");
 		String phone1 = request.getParameter("phone1");
 		String phone2 = request.getParameter("phone2");
@@ -57,7 +56,6 @@ public class PhoneBookInsertServlet extends HttpServlet {
 			response.sendRedirect("MainServlet");
 		}else {
 			MemberService mService = new MemberService();
-			
 			
 			PhonebookVO phonebook = new PhonebookVO();
 			phonebook.setAddress(address);

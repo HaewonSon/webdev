@@ -37,7 +37,6 @@ public class JoinServlet extends HttpServlet {
 					throws ServletException, IOException {
 //		회원가입 하도록 화면 이동 
 		response.setCharacterEncoding("utf-8");
-//		request.setAttribute("msg", "아이디, 비밀번호는 필수 입력 항목입니다.");
 		RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 		disp.forward(request, response);
 	}
@@ -59,11 +58,53 @@ public class JoinServlet extends HttpServlet {
 		
 		request.setAttribute("login",login);
 		
-//			id나 pw가 입력되지 않은 경우 페이지로 돌아가게 한다. 
-		if(id.equals("")&& password.equals("")) {
-//			response.sendRedirect("joinForm.jsp?msg='아이디와 비밀번호는 필수 입력 항목입니다.");
-			doGet(request, response); 
-			//아이디, 비밀번호 없을 경우 다시 회원가입 폼으로 가게 한다 
+		
+//		예외처리 
+		
+//		이름이 공백인 경우 
+		if(name.equals("")) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("nameMsg", "이름이 없습니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+//		아이디가 공백인 경우 	
+		}else if(id.equals("")) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("idMsg", "아이디가 없습니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+//		이미 존재하는 아이디인 경우 	
+		}else if(SearchId(id)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("idMsg", "이미 존재하는 아이디입니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+//		비밀번호가 공백인 경우 	
+		}else if(password.equals("")) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("pwMsg", "패스워드를 입력해주세요");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+//		이미 저장된 번호인 경우 	
+		}else if(SearchPhoneNum(phonenum)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("phoneMsg", "이미 저장되어 있는 번호입니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+//		전화번호 양식이 올바르지 않은 경우	
+		}else if(phoneNumChecker(phonenum)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			request.setAttribute("member", member);
+			request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
+			disp.forward(request, response);
+			
+//		모두 정상적으로 입력 시 회원 등록 	
 		}else {
 //			Insert 
 			login.setName(name);
@@ -83,6 +124,35 @@ public class JoinServlet extends HttpServlet {
 			response.sendRedirect("MainServlet");
 		}
 		
+	}
+	
+//	전화번호 양식 확인 메소드 
+	private boolean phoneNumChecker(String phonenum) {
+//		전화번호의 길이가 11자리가 아닌 경우 
+		if(phonenum.length()!=11) {
+			return true;
+		}
+//		문자를 입력한 경우 
+		char[] numbers = phonenum.toCharArray();
+		for(char num : numbers) {
+			if(num>'9'||num<'0') {
+				return true;
+			}
+		}
+//		정상적으로 입력했다면 통과 
+		return false;
+	}
+	
+	private boolean SearchId(String id) {
+		MemberService mService = new MemberService();
+		boolean answer = mService.SearchId(id);
+		return answer;
+	}
+
+	public boolean SearchPhoneNum(String phonenum) {
+		MemberService mService = new MemberService();
+		boolean answer = mService.SearchPhoneNum(phonenum);
+		return answer;
 	}
 
 }

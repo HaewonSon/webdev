@@ -318,7 +318,7 @@ public class PhonebookDAO {
 		
 	}
 
-
+//	회원가입한 회원 정보만 보여주는 메소드 
 	public int selectMembernum(String id) {
 		int membernum = 0;
 		
@@ -332,7 +332,6 @@ public class PhonebookDAO {
 		try {
 			
 			pstmt 	= con.prepareStatement(query); 
-//			접속한 아이디의 연락처만 보여준다. 
 			pstmt.setString(1, id);
 			rs 	= pstmt.executeQuery();
 
@@ -364,17 +363,13 @@ public class PhonebookDAO {
 		query.append("	like ? 	");
 		query.append("	and id = ? and groupnum < 4	 ");
 		
-		
 		try {
-			
 			pstmt 	= con.prepareStatement(query.toString()); 
-//			접속한 아이디의 연락처만 보여준다. 
 			pstmt.setString(1, "%"+search+"%");
 			pstmt.setString(2, id);
 			
 			rs 	= pstmt.executeQuery();
 			
-//			ArrayList에 담는다. 
 			while(rs.next()) {
 				PhonebookVO phonebook = new PhonebookVO();
 				phonebook.setName(rs.getString("name"));
@@ -384,7 +379,6 @@ public class PhonebookDAO {
 				phonebook.setId(rs.getString("id"));
 				phonebook.setMembernum(rs.getInt("membernum"));
 				
-//				ArrayList 에 값 추가 
 				members.add(phonebook);
 			}
 		}catch(Exception e) {
@@ -393,30 +387,61 @@ public class PhonebookDAO {
 			dbCon.close(con, pstmt, rs);
 		}
 		return members;
-		
-		
-		
 	}
 
-	
-	
-	
+//	전화번호 중복 체크 
+	public boolean SearchPhoneNum(String phonenum) {
+		Connection con 			= dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs			= null;
+		StringBuilder query = new StringBuilder();
+		boolean answer = false;
+		
+		query.append("	select * from phonebook where phonenum=?	");
+		
+		try {
+			pstmt 	= con.prepareStatement(query.toString()); 
+			pstmt.setString(1, phonenum);
+			
+			rs 	= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				answer=true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbCon.close(con, pstmt, rs);
+		}
+		return answer;
+	}
 
 
-	
-	
-	
-	
-	
-	
-	
+//	아이디 중복 체크 
+	public boolean SearchId(String id) {
+		Connection con 			= dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs			= null;
+		StringBuilder query = new StringBuilder();
+		boolean answer = false;
+		
+		query.append("	select * from login_info where id=?	");
+		
+		try {
+			pstmt 	= con.prepareStatement(query.toString()); 
+			pstmt.setString(1, id);
+			
+			rs 	= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				answer=true;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			dbCon.close(con, pstmt, rs);
+		}
+		return answer;
+	}
 	
 } // PhonebookDAO class end 
-
-
-
-
-
-
-
-

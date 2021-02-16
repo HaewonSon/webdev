@@ -9,6 +9,15 @@ public class PhonebookVO {
 	private String id;
 	private String groupname;
 	
+	public PhonebookVO() {
+		
+	}
+	
+	public PhonebookVO(String name, String phonenum, String id) {
+		this.name=name;
+		this.phonenum=phonenum;
+		this.id=id;
+	}
 	
 	public String getGroupname() {
 		return groupname;

@@ -5,9 +5,10 @@
 <link rel="stylesheet" href="styles/styles.css">
 <head>
 <meta charset="UTF-8">
-<title>연락처 프로그램 - 로그인 </title>
+<title>LogIn </title>
 </head>
 <body>
+
 
 	<header class="welcome-header">
 	<h2 class="welcome-header_title">Log In </h2>
