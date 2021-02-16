@@ -1,0 +1,26 @@
+@charset "UTF-8";
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Brygada+1918:wght@500&family=Noto+Sans+KR&display=swap');
+
+
+/* contents */
+@import "login.css";
+@import "reset.css";
+
+/* font-family: 'Brygada 1918', serif; */
+/* font-family: 'Noto Sans KR', sans-serif; */
+/* font-family: 'Marcellus', serif; */
+
+body {
+  color: #2e363e;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-family: 'Brygada 1918', serif;
+  font-family: 'Marcellus', serif;
+  
+}
+
+.main-screen {
+  padding: 0px var(--horizontal-space);
+}
