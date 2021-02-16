@@ -23,7 +23,7 @@
 		비밀번호 : <input type="password" name="password" size="10"/><br/>
 		<span style="color:teal">${msg }</span><br/>
 		<br/>
-		전화번호 : ddddddd!
+		전화번호 : 
 		<select name="phone1">
 			<option value="010">010</option>
 			<option value="011">011</option>

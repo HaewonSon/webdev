@@ -61,7 +61,6 @@ public class JoinServlet extends HttpServlet {
 		
 //			id나 pw가 입력되지 않은 경우 페이지로 돌아가게 한다. 
 		if(id.equals("")&& password.equals("")) {
-//			request.setAttribute("msg", "아이디, 비밀번호는 필수 입력 항목입니다.");
 //			response.sendRedirect("joinForm.jsp?msg='아이디와 비밀번호는 필수 입력 항목입니다.");
 			doGet(request, response); 
 			//아이디, 비밀번호 없을 경우 다시 회원가입 폼으로 가게 한다 

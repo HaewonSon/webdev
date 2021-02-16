@@ -9,9 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import service.MemberService;
-import vo.LoginVO;
 import vo.PhonebookVO;
 
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 16.
+ * @package  : controller
+ * @filename : PhoneBookInsertServlet.java
+ * @description : 연락처에 회원을 추가하는 기능의 서블릿 
+ */
 @WebServlet("/PhoneBookInsertServlet")
 public class PhoneBookInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

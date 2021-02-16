@@ -14,6 +14,13 @@ import service.MemberService;
 import vo.LoginVO;
 import vo.PhonebookVO;
 
+/**
+ * @작성자 : 손해
+ * @작성일 : 2021. 2. 16.
+ * @package  : controller
+ * @filename : MemberModifyServlet.java
+ * @description : 회원정보 수정 처리 서블릿 
+ */
 @WebServlet("/MemberModifyServlet")
 public class MemberModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -28,18 +35,17 @@ public class MemberModifyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		if (id == null) {
-//			session에서 꺼낸 id가 공백이다 -> 로그인 하지 않음 
-//			로그인 하도록 보낸다 
+//			session에서 꺼낸 id가 공백일 때  
 			response.sendRedirect("MainServlet");
 //			 -> loginForm.jsp
 		}else {
 			MemberService mService = new MemberService();
-			System.out.println(id);
+//			System.out.println(id);
 			int membernum = mService.selectMembernum(id);
-			System.out.println(membernum);
+//			System.out.println(membernum);
 			session.setAttribute("membernum", membernum);
 			PhonebookVO member = mService.selectByMembernum(membernum);  //session에서 추출한 아이디 
-			System.out.println(member.getPhonenum());
+//			System.out.println(member.getPhonenum());
 //			request 에 select한 결과를 담는다 
 			request.setAttribute("id", id);
 			request.setAttribute("member", member);
@@ -49,7 +55,6 @@ public class MemberModifyServlet extends HttpServlet {
 //			modifyForm.jsp 를 forward
 			RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
 			disp.forward(request, response);
-			
 		}
 		
 	} // 
@@ -58,11 +63,10 @@ public class MemberModifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request
 			, HttpServletResponse response) 
 					throws ServletException, IOException {
-//		request = > 사용자가 입력한 정보 추출
+//		사용자가 입력한 정보 추출
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-//		비밀번호 확인 
 		if(id == null) {
 			response.sendRedirect("MainServlet");
 		}else {
@@ -83,7 +87,7 @@ public class MemberModifyServlet extends HttpServlet {
 				String address = request.getParameter("address");
 				int groupnum = 4;
 				
-				
+//				VO에 set 
 				phonebook.setId(id);
 				phonebook.setName(name);
 				phonebook.setPhonenum(phonenum);
@@ -91,6 +95,7 @@ public class MemberModifyServlet extends HttpServlet {
 				phonebook.setGroupnum(groupnum);
 				phonebook.setMembernum(membernum);
 				
+//				다시 입력한 id와 pw가 틀렸을 경우 
 				if(login == null) {
 					request.setAttribute("phone2", phone2);
 					request.setAttribute("phone3", phone3);
@@ -106,14 +111,10 @@ public class MemberModifyServlet extends HttpServlet {
 					response.sendRedirect("MainServlet");
 					
 				}
-				
-				
-				
 			
 		}
 		
-		
-	}
+	}// dopost end
 
 
-}
+}//class end

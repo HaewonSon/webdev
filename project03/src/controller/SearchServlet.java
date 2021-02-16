@@ -14,6 +14,13 @@ import javax.servlet.http.HttpSession;
 import service.MemberService;
 import vo.PhonebookVO;
 
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 16.
+ * @package  : controller
+ * @filename : SearchServlet.java
+ * @description : 연락처 검색 기능의 서블릿 
+ */
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

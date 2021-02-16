@@ -11,11 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import service.MemberService;
-import vo.LoginVO;
 import vo.PhonebookVO;
 
 /**
  * Servlet implementation class ModifyServlet
+ */
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 16.
+ * @package  : controller
+ * @filename : PhoneBookModifyServlet.java
+ * @description : 연락처에 등록된 회원정보를 수정하는 기능의 서블릿 
  */
 @WebServlet("/PhoneBookModifyServlet")
 public class PhoneBookModifyServlet extends HttpServlet {
@@ -32,8 +38,7 @@ public class PhoneBookModifyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		if (id == null) {
-//			session에서 꺼낸 id가 공백이다 -> 로그인 하지 않음 
-//			로그인 하도록 보낸다 
+//			session에서 꺼낸 id -> 공백 
 			response.sendRedirect("MainServlet");
 //			 -> loginForm.jsp
 		}else {
@@ -57,11 +62,10 @@ public class PhoneBookModifyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request
 			, HttpServletResponse response) 
 					throws ServletException, IOException {
-//		request = > 사용자가 입력한 정보 추출
+//		사용자가 입력한 정보 추출
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-//		비밀번호 확인 
 		if(id == null) {
 			response.sendRedirect("MainServlet");
 		}else {
