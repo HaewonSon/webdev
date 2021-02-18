@@ -299,6 +299,7 @@ public class PhonebookDAO {
 		StringBuilder query = new StringBuilder();
 		query.append("update login_info		");
 		query.append("   set name = ? 		");
+		query.append("  	,password = ? 		");
 		query.append(" where id = ?		 	");
 
 		
@@ -306,7 +307,8 @@ public class PhonebookDAO {
 			con = dbCon.getConnection();
 			pstmt = con.prepareStatement(query.toString());
 			pstmt.setString(1, login.getName());
-			pstmt.setString(2, login.getId());
+			pstmt.setString(2, login.getPassword());
+			pstmt.setString(3, login.getId());
 			
 			pstmt.executeUpdate();
 			
@@ -356,9 +358,10 @@ public class PhonebookDAO {
 		
 		ArrayList<PhonebookVO> members = new ArrayList<PhonebookVO>();
 		
-		query.append("	select * 	");
-		query.append("	from phonebook	");
-		query.append("	where	");
+		query.append("	select p.membernum, p.name,p.id, p.groupnum, p.phonenum, p.address ");
+		query.append("	from phonebook p inner join group_info g on ");
+		query.append("	p.groupnum = g.group_number 					");
+		query.append("	where 	");
 		query.append(category);
 		query.append("	like ? 	");
 		query.append("	and id = ? and groupnum < 4	 ");
@@ -390,18 +393,19 @@ public class PhonebookDAO {
 	}
 
 //	전화번호 중복 체크 
-	public boolean SearchPhoneNum(String phonenum, int membernum) {
+	public boolean SearchPhoneNum(String phonenum,String id, int membernum) {
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs			= null;
 		StringBuilder query = new StringBuilder();
 		boolean answer = false;
 		
-		query.append("	select * from phonebook where phonenum=?	");
+		query.append("	select * from phonebook where phonenum=? and id=?	");
 		
 		try {
 			pstmt 	= con.prepareStatement(query.toString()); 
 			pstmt.setString(1, phonenum);
+			pstmt.setString(2, id);
 			
 			rs 	= pstmt.executeQuery();
 			

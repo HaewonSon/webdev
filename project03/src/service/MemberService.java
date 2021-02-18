@@ -114,9 +114,9 @@ public class MemberService {
 	}
 
 
-	public boolean SearchPhoneNum(String phonenum, int membernum) {
+	public boolean SearchPhoneNum(String phonenum,String id, int membernum) {
 		PhonebookDAO pDao = new PhonebookDAO();
-		boolean answer = pDao.SearchPhoneNum(phonenum, membernum);
+		boolean answer = pDao.SearchPhoneNum(phonenum,id, membernum);
 		return answer;
 	}
 

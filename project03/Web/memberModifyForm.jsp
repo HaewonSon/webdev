@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/modify.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -14,9 +15,14 @@
 		${nameMsg }
 		Id : <input type="text" name="id" size="10" readonly="readonly" value="${id }"/><br/>
 		<br/>
-		<br/>
-		Password : <input type="password" name="password" size="13" placeholder="input password" />
+		Password : <input type="password" name="password" size="13" placeholder="기존 비밀번호" />
 		${pwMsg }<br/>
+		<br/> 
+		New Password : <input type="password" name="newpassword" size="13" placeholder="new password" />
+		${newPwMsg }<br/>
+		<br/> 
+		Check New Password : <input type="password" name="newpasswordcheck" size="13" placeholder="new password" />
+		${newPwMsg }<br/>
 		<br/> 
 		전화번호 : 
 		<select name="phone1">
@@ -32,8 +38,6 @@
 		${phoneMsg }
 		<br/>
 		주소 : <input type="text" name="address" size="10" value="${member.address }" />
-		<br/>
-		<br/>
 		<br/>
 		<br/>
 		<input type="submit" value="내 정보 수정"/><br/>

@@ -21,6 +21,7 @@
 <select name="category">
 	<option value="name">이름</option>
 	<option value="phonenum">전화번호</option>
+	<option value="group_name">그룹</option>
 </select>
 <input type="text" name="search" size="10"/>
 <input type="submit" value="검색"/>

@@ -71,6 +71,8 @@ public class MemberModifyServlet extends HttpServlet {
 			response.sendRedirect("MainServlet");
 		}else {
 			String password = request.getParameter("password");
+			String newpassword = request.getParameter("newpassword");
+			String newpasswordcheck = request.getParameter("newpasswordcheck");
 //			비밀번호가 정상 입력된 경우  -> 정상적으로 수정처리 (update)
 			PhonebookVO phonebook= new PhonebookVO();
 			String name = request.getParameter("name");
@@ -79,6 +81,7 @@ public class MemberModifyServlet extends HttpServlet {
 			String phone3 = request.getParameter("phone3");
 			String phonenum = phone1+phone2+phone3;
 			String address = request.getParameter("address");
+			
 			int groupnum = 4;
 			
 			int membernum =(int)session.getAttribute("membernum");
@@ -101,7 +104,7 @@ public class MemberModifyServlet extends HttpServlet {
 				RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
 				disp.forward(request, response);
 //			이미 저장된 번호인 경우 	
-			}else if(SearchPhoneNum(phonenum,membernum)) {
+			}else if(SearchPhoneNum(phonenum,id,membernum)) {
 				PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 				request.setAttribute("member", member);
 				request.setAttribute("phoneMsg", "이미 저장되어 있는 번호입니다.");
@@ -131,15 +134,24 @@ public class MemberModifyServlet extends HttpServlet {
 				phonebook.setMembernum(membernum);
 				
 //				다시 입력한 id와 pw가 틀렸을 경우 
-				if(login == null) {
+				if(login.getId() == null) {
 					request.setAttribute("phone2", phone2);
 					request.setAttribute("phone3", phone3);
 					request.setAttribute("member", phonebook);
+					request.setAttribute("pwMsg", "비밀번호가 일치하지 않습니다. ");
+					RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
+					disp.forward(request, response);
+				}else if(!newpassword.equals(newpasswordcheck)){
+					request.setAttribute("phone2", phone2);
+					request.setAttribute("phone3", phone3);
+					request.setAttribute("member", phonebook);
+					request.setAttribute("newPwMsg", "새로운 비밀번호가 일치하지 않습니다. ");
 					RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
 					disp.forward(request, response);
 				}else {
 					login.setName(name);
 					login.setId(id);
+					login.setPassword(newpasswordcheck);
 					mService.updateLogin(login);
 					mService.updateMember(phonebook);
 					session.invalidate();
@@ -169,9 +181,9 @@ public class MemberModifyServlet extends HttpServlet {
 	}
 	
 
-	public boolean SearchPhoneNum(String phonenum, int membernum) {
+	public boolean SearchPhoneNum(String phonenum, String id, int membernum) {
 		MemberService mService = new MemberService();
-		boolean answer = mService.SearchPhoneNum(phonenum,membernum);
+		boolean answer = mService.SearchPhoneNum(phonenum,id,membernum);
 		return answer;
 	}
 

@@ -90,7 +90,7 @@ public class JoinServlet extends HttpServlet {
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		이미 저장된 번호인 경우 	
-		}else if(SearchPhoneNum(phonenum,-1)) {
+		}else if(SearchPhoneNum(phonenum,id,-1)) {
 			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("phoneMsg", "이미 저장되어 있는 번호입니다.");
@@ -150,9 +150,9 @@ public class JoinServlet extends HttpServlet {
 		return answer;
 	}
 
-	public boolean SearchPhoneNum(String phonenum, int membernum) {
+	public boolean SearchPhoneNum(String phonenum, String id, int membernum) {
 		MemberService mService = new MemberService();
-		boolean answer = mService.SearchPhoneNum(phonenum,membernum);
+		boolean answer = mService.SearchPhoneNum(phonenum,id, membernum);
 		return answer;
 	}
 

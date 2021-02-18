@@ -98,6 +98,14 @@ public class PhoneBookModifyServlet extends HttpServlet {
 				request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
 				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
 				disp.forward(request, response);
+				
+			}else if(SearchPhoneNum(phonenum,id,membernum)) {
+				PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
+				request.setAttribute("member", member);
+				request.setAttribute("phoneMsg", "전화번호 중복.");
+				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
+				disp.forward(request, response);
+				
 			}else {
 					phonebook.setId(id);
 					phonebook.setName(name);
@@ -134,9 +142,9 @@ public class PhoneBookModifyServlet extends HttpServlet {
 		}
 		
 
-		public boolean SearchPhoneNum(String phonenum, int membernum) {
+		public boolean SearchPhoneNum(String phonenum,String id, int membernum) {
 			MemberService mService = new MemberService();
-			boolean answer = mService.SearchPhoneNum(phonenum,membernum);
+			boolean answer = mService.SearchPhoneNum(phonenum,id,membernum);
 			return answer;
 		}
 
