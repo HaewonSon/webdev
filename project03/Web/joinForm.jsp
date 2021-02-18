@@ -23,9 +23,9 @@
 		<span style="color:orange">${msg }</span><br/>
 		${idMsg }
 		<br/>
-		비밀번호 : <input type="password" name="password" size="10"/><br/>
+		비밀번호 : <input type="password" name="password" size="10"/>${pwMsg }<br/>
 		<span style="color:teal">${msg }</span><br/>
-		${pwMsg }
+		
 		<br/>
 		전화번호 : 
 		<select name="phone1">
@@ -40,7 +40,7 @@
 		<br/>
 		${phoneMsg }
 		<br/>
-		주소 : <input type="text" name="address" size="10"/>
+		주소 : <input type="text" name="address" size="10" value="${member.address }"/>
 		<br/>
 		<br/>
 		<input type="submit" value="회원가입"/><br/>

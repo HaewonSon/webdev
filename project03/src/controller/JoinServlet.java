@@ -63,42 +63,42 @@ public class JoinServlet extends HttpServlet {
 		
 //		이름이 공백인 경우 
 		if(name.equals("")) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("nameMsg", "이름이 없습니다.");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		아이디가 공백인 경우 	
 		}else if(id.equals("")) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("idMsg", "아이디가 없습니다.");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		이미 존재하는 아이디인 경우 	
 		}else if(SearchId(id)) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("idMsg", "이미 존재하는 아이디입니다.");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		비밀번호가 공백인 경우 	
 		}else if(password.equals("")) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("pwMsg", "패스워드를 입력해주세요");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		이미 저장된 번호인 경우 	
-		}else if(SearchPhoneNum(phonenum)) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+		}else if(SearchPhoneNum(phonenum,-1)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("phoneMsg", "이미 저장되어 있는 번호입니다.");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 			disp.forward(request, response);
 //		전화번호 양식이 올바르지 않은 경우	
 		}else if(phoneNumChecker(phonenum)) {
-			PhonebookVO member = new PhonebookVO(name,phonenum,id);
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 			request.setAttribute("member", member);
 			request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
 			RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
@@ -149,9 +149,9 @@ public class JoinServlet extends HttpServlet {
 		return answer;
 	}
 
-	public boolean SearchPhoneNum(String phonenum) {
+	public boolean SearchPhoneNum(String phonenum, int membernum) {
 		MemberService mService = new MemberService();
-		boolean answer = mService.SearchPhoneNum(phonenum);
+		boolean answer = mService.SearchPhoneNum(phonenum,membernum);
 		return answer;
 	}
 

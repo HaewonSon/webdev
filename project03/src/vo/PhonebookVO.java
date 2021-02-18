@@ -13,10 +13,11 @@ public class PhonebookVO {
 		
 	}
 	
-	public PhonebookVO(String name, String phonenum, String id) {
+	public PhonebookVO(String name, String phonenum, String id, String address) {
 		this.name=name;
 		this.phonenum=phonenum;
 		this.id=id;
+		this.address=address;
 	}
 	
 	public String getGroupname() {

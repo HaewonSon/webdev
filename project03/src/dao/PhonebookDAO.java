@@ -390,7 +390,7 @@ public class PhonebookDAO {
 	}
 
 //	전화번호 중복 체크 
-	public boolean SearchPhoneNum(String phonenum) {
+	public boolean SearchPhoneNum(String phonenum, int membernum) {
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs			= null;
@@ -406,7 +406,12 @@ public class PhonebookDAO {
 			rs 	= pstmt.executeQuery();
 			
 			while(rs.next()) {
+				int oldmembernum = Integer.parseInt(rs.getString("membernum"));
+				if(oldmembernum==membernum) {
+					answer=false;
+				}else {
 				answer=true;
+				}
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

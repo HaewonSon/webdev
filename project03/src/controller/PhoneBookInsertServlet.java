@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,11 +54,29 @@ public class PhoneBookInsertServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		if(id == null) {
-			response.sendRedirect("MainServlet");
+//		예외처리 
+		if(name.equals("")) {
+			PhonebookVO member = new PhonebookVO();
+			request.setAttribute("member", member);
+			request.setAttribute("nameMsg", "이름을 입력해 주세요.");
+			RequestDispatcher disp = request.getRequestDispatcher("insertForm.jsp");
+			disp.forward(request, response);
+	//	이미 저장된 번호인 경우 	
+		}else if(SearchPhoneNum(phonenum,-1)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
+			request.setAttribute("member", member);
+			request.setAttribute("phoneMsg", "이미 저장되어 있는 번호입니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("insertForm.jsp");
+			disp.forward(request, response);
+	//	전화번호 양식이 올바르지 않은 경우	
+		}else if(phoneNumChecker(phonenum)) {
+			PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
+			request.setAttribute("member", member);
+			request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
+			RequestDispatcher disp = request.getRequestDispatcher("insertForm.jsp");
+			disp.forward(request, response);
 		}else {
 			MemberService mService = new MemberService();
-			
 			PhonebookVO phonebook = new PhonebookVO();
 			phonebook.setAddress(address);
 			phonebook.setId(id);
@@ -68,5 +88,31 @@ public class PhoneBookInsertServlet extends HttpServlet {
 			
 		}
 	}
+		
+
+		
+		public boolean SearchPhoneNum(String phonenum, int membernum) {
+			MemberService mService = new MemberService();
+			boolean answer = mService.SearchPhoneNum(phonenum,membernum);
+			return answer;
+		}
+		
+		
+//		전화번호 양식 확인 메소드 
+		private boolean phoneNumChecker(String phonenum) {
+//			전화번호의 길이가 11자리가 아닌 경우 
+			if(phonenum.length()!=11) {
+				return true;
+			}
+//			문자를 입력한 경우 
+			char[] numbers = phonenum.toCharArray();
+			for(char num : numbers) {
+				if(num>'9'||num<'0') {
+					return true;
+				}
+			}
+//			정상적으로 입력했다면 통과 
+			return false;
+		}
 
 }

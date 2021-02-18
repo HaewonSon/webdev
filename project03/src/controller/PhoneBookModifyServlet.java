@@ -68,35 +68,76 @@ public class PhoneBookModifyServlet extends HttpServlet {
 		String id = (String)session.getAttribute("id");
 		if(id == null) {
 			response.sendRedirect("MainServlet");
-		}else {
+		}else{
 			int membernum = (int)session.getAttribute("membernum");
-			session.removeAttribute("membernum");
-			MemberService mService = new MemberService();
-//				비밀번호가 정상 입력된 경우  -> 정상적으로 수정처리 (update)
-				PhonebookVO phonebook= new PhonebookVO();
-				String name = request.getParameter("name");
-				String phone1 = request.getParameter("phone1");
-				String phone2 = request.getParameter("phone2");
-				String phone3 = request.getParameter("phone3");
-				String phonenum = phone1+phone2+phone3;
-				String address = request.getParameter("address");
-				int groupnum = Integer.parseInt(request.getParameter("groupnum"));
-				
-				phonebook.setId(id);
-				phonebook.setName(name);
-				phonebook.setPhonenum(phonenum);
-				phonebook.setAddress(address);
-				phonebook.setGroupnum(groupnum);
-				phonebook.setMembernum(membernum);
-				
-				mService.updateMember(phonebook);
-				response.sendRedirect("MainServlet");
-				
-				
 			
+			MemberService mService = new MemberService();
+//			비밀번호가 정상 입력된 경우  -> 정상적으로 수정처리 (update)
+			PhonebookVO phonebook= new PhonebookVO();
+			String name = request.getParameter("name");
+			String phone1 = request.getParameter("phone1");
+			String phone2 = request.getParameter("phone2");
+			String phone3 = request.getParameter("phone3");
+			String phonenum = phone1+phone2+phone3;
+			String address = request.getParameter("address");
+			int groupnum = Integer.parseInt(request.getParameter("groupnum"));
+			
+//			예외처리 
+			
+//			이름이 공백인 경우 
+			if(name.equals("")) {
+				PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
+				request.setAttribute("member", member);
+				request.setAttribute("nameMsg", "이름이 없습니다.");
+				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
+				disp.forward(request, response);
+//			전화번호 양식이 올바르지 않은 경우	
+			}else if(phoneNumChecker(phonenum)) {
+				PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
+				request.setAttribute("member", member);
+				request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
+				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
+				disp.forward(request, response);
+			}else {
+					phonebook.setId(id);
+					phonebook.setName(name);
+					phonebook.setPhonenum(phonenum);
+					phonebook.setAddress(address);
+					phonebook.setGroupnum(groupnum);
+					phonebook.setMembernum(membernum);
+					
+					mService.updateMember(phonebook);
+					session.removeAttribute("membernum");
+					response.sendRedirect("MainServlet");
+				}
+			}	
+		
+		
+	}//doPost end
+		
+//		전화번호 양식 확인 메소드 
+		private boolean phoneNumChecker(String phonenum) {
+//			전화번호의 길이가 11자리가 아닌 경우 
+			if(phonenum.length()!=11) {
+				return true;
+			}
+//			문자를 입력한 경우 
+			char[] numbers = phonenum.toCharArray();
+			for(char num : numbers) {
+//				아스키코드로 비교 
+				if(num>'9'||num<'0') {
+					return true;
+				}
+			}
+//			정상적으로 입력했다면 통과 
+			return false;
 		}
 		
-		
-	}
+
+		public boolean SearchPhoneNum(String phonenum, int membernum) {
+			MemberService mService = new MemberService();
+			boolean answer = mService.SearchPhoneNum(phonenum,membernum);
+			return answer;
+		}
 
 }//

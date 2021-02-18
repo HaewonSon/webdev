@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="styles/main.css"/>
 <meta charset="UTF-8">
 <title>MainPage</title>
 </head>
@@ -16,7 +17,7 @@
 <br/>
 <br/>
 <h2>Member List </h2>
-<form action="SearchServlet" method="post" >
+<form action="SearchServlet" method="post"  >
 <select name="category">
 	<option value="name">이름</option>
 	<option value="phonenum">전화번호</option>
@@ -58,7 +59,7 @@ td {
 </table>	
 <br>
 
-<a href="PhoneBookInsertServlet">연락처추가</a>
+<a href="PhoneBookInsertServlet" class="">연락처추가</a>
 
 <a href="MainServlet">전체 목록</a>
 

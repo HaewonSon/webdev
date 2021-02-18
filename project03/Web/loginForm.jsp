@@ -16,8 +16,8 @@
 	<br/>
 	<div>
 	<form id="login-form" action="LoginServlet" method="post">
-		<input type="text" name="id" placeholder="ID"/><br/>
-		<input type="password" name="password" placeholder="Password"/><br/>
+		<input type="text" name="id" placeholder="ID"/>${idMsg }<br/>
+		<input type="password" name="password" placeholder="Password"/>${pwMsg }<br/>
 		<input type="submit" value="Sign In"/>
 	<a href="JoinServlet">Create Account</a>
 	</form>
