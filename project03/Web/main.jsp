@@ -36,8 +36,9 @@ td {
 	}
 </style>
 
+
 <!-- 연락처 목록  -->
-<table >
+<table class="table">
 	<tr>
 		<th>이름</th><th>연락처</th><th>주소</th><th>그룹</th><th>수정</th><th>삭제</th>
 	</tr>

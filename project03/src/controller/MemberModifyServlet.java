@@ -143,7 +143,7 @@ public class MemberModifyServlet extends HttpServlet {
 					mService.updateLogin(login);
 					mService.updateMember(phonebook);
 					session.invalidate();
-					response.sendRedirect("MainServlet");
+					response.sendRedirect("modifySuccessForm.jsp");
 				}
 				}
 			
@@ -159,6 +159,7 @@ public class MemberModifyServlet extends HttpServlet {
 //		문자를 입력한 경우 
 		char[] numbers = phonenum.toCharArray();
 		for(char num : numbers) {
+//			아스키코드
 			if(num>'9'||num<'0') {
 				return true;
 			}

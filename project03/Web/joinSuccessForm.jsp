@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/styles.css">
 <head>
 <meta charset="UTF-8">
 <title>Welcome!</title>

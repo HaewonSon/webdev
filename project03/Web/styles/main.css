@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
-.table{
-	width: 100%;
-	padding: 15px;
-}
+
+
 button {
 	overflow: visible;
 }
@@ -25,3 +23,5 @@ button::-moz-focus-inner, input::-moz-focus-inner {
 	border: 0;
 	padding: 0;
 }
+
+
