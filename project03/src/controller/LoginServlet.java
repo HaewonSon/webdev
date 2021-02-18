@@ -43,11 +43,11 @@ public class LoginServlet extends HttpServlet {
 		if(id==null) {
 			response.sendRedirect("loginForm.jsp");
 		}else if(id.equals("")) {
-			request.setAttribute("idMsg", "아이디를 입력해주세요");
+			request.setAttribute("idMsg", "아이디를 입력하세요. ");
 			RequestDispatcher disp = request.getRequestDispatcher("loginForm.jsp");
 			disp.forward(request, response);
 		}else if (password.equals("")) {
-			request.setAttribute("pwMsg", "패스워드 입력해주세요");
+			request.setAttribute("pwMsg", "패스워드를 입력하세요. ");
 			RequestDispatcher disp = request.getRequestDispatcher("loginForm.jsp");
 			disp.forward(request, response);
 		}else {

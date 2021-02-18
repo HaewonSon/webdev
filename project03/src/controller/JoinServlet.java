@@ -121,7 +121,7 @@ public class JoinServlet extends HttpServlet {
 			phonebook.setName(name);
 			phonebook.setGroupnum(4);
 			mService.insertMember(phonebook);
-			response.sendRedirect("MainServlet");
+			response.sendRedirect("joinSuccessForm.jsp");
 		}
 		
 	}
