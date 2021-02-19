@@ -10,7 +10,7 @@ import vo.LoginVO;
  * @작성일 : 2021. 2. 7.
  * @package  : service
  * @filename : MemberService.java
- * @description :
+ * @description : DAO 와 Controller의 사이에서 메소드를 전달하는 service
  */
 public class MemberService {
 	
@@ -32,19 +32,19 @@ public class MemberService {
 		return members;
 	} // selectAll end 
 
-	
+//	로그인 처리 
 	public LoginVO selectByIdPw (String id, String password) {
 		LoginVO member = new PhonebookDAO().selectByIdPw(id, password);
 		return member; //  로그인 화면에서 출력 
 	}
 
-	
+//	연락처 - 회원 추가 
 	public void insertMember(PhonebookVO phonebook) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		pDao.insertMember(phonebook);
 	}
 
-
+//	Id로 검색 
 	public PhonebookVO selectById(String id) {
 		PhonebookVO phonebook = null;
 		PhonebookDAO pDao = new PhonebookDAO();
@@ -52,19 +52,19 @@ public class MemberService {
 		return phonebook;
 	}
 
-
+//	연락처 - 회원 수정 
 	public void updateMember(PhonebookVO phone) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		pDao.updateMember(phone);
 	}
 
-
+//	회원가입 
 	public void joinInsert(LoginVO login) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		pDao.joinInsert(login);
 		
 	}
-
+//	회원번호로 연락처 검색하기 
 	public PhonebookVO selectByMembernum(int membernum) {
 		
 		PhonebookVO pb = new PhonebookVO();
@@ -74,7 +74,7 @@ public class MemberService {
 		return pb;
 	}
 
-
+//	연락처 삭제 
 	public void deletePhonebook(int membernum) {
 		
 		PhonebookDAO pDao = new PhonebookDAO();
@@ -82,7 +82,7 @@ public class MemberService {
 		
 	}
 
-
+//	회원가입한 회원의 정보 수정 
 	public void updateLogin(LoginVO login) {	
 		PhonebookDAO pDao = new PhonebookDAO();
 		pDao.updateLogin(login);
@@ -90,14 +90,14 @@ public class MemberService {
 		
 	}
 
-
+//	회원가입한 회원 정보만 보여주는 메소드 
 	public int selectMembernum(String id) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		int membernum = pDao.selectMembernum(id);
 		return membernum;
 	}
 
-
+//	연락처 - 그룹으로 검색 
 	public ArrayList<PhonebookVO> searchByCategory(String category, String search, String id) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		ArrayList<PhonebookVO> members = pDao.searchByCategory(category, search, id);
@@ -113,14 +113,14 @@ public class MemberService {
 			return members;
 	}
 
-
+//	전화번호 중복체크 
 	public boolean SearchPhoneNum(String phonenum,String id, int membernum) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		boolean answer = pDao.SearchPhoneNum(phonenum,id, membernum);
 		return answer;
 	}
 
-
+//	아이디 중복체크 
 	public boolean SearchId(String id) {
 		PhonebookDAO pDao = new PhonebookDAO();
 		boolean answer = pDao.SearchId(id);

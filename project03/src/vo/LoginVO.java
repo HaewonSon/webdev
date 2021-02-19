@@ -1,5 +1,12 @@
 package vo;
 
+/**
+ * @작성자 :	손해원 
+ * @작성일 : 2021. 2. 19.
+ * @package  : vo
+ * @filename : LoginVO.java
+ * @description : 한 명의 회원정보를 저장하는 VO
+ */
 public class LoginVO {
 	private String id;
 	private String password;

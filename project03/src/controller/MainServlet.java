@@ -22,7 +22,8 @@ import vo.*;
  * @작성일 : 2021. 2. 7.
  * @package  : controller
  * @filename : MainServlet.java
- * @description : 
+ * @description : 시작하는 페이지이며, 
+ * 				  다른 페이지로 넘어가기 위한 요소들을 체크하는 메인 서블릿 
  */
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {

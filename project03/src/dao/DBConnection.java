@@ -5,6 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 7.
+ * @package  : dao
+ * @filename : DBConnection.java
+ * @description : DB 연결 기능 메소드를 모아둔 class
+ */
 public class DBConnection {
 //	
 	private static DBConnection connection = 

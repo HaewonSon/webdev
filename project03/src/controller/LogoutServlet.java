@@ -11,6 +11,13 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LogoutServlet
  */
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 19.
+ * @package  : controller
+ * @filename : LogoutServlet.java
+ * @description : 로그아웃 서블릿 
+ */
 @WebServlet("/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

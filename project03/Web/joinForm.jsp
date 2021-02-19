@@ -9,27 +9,24 @@
 <title> 회원가입 </title>
 </head>
 
-
-<body>
-	<header class="welcome-header">
-	<h2 class="welcome-header_title">Join Us</h2>
-		<p class="welcome-header_text">
+<header>
+	<h2>Join Us</h2>
+		<p>
 		정보를 입력해 주세요. :-) 
 		</p>
-	
-	<form  action="JoinServlet" method="post" name="joinform">
-		이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
+</header>
+<body>
+<form  action="JoinServlet" method="post" name="joinform">
+	* 이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
 		${nameMsg }
 		<br/>
-		아이디 : <input type="text" name="id" size="10" value="${member.id }" /><br/>
-		<span style="color:orange">${msg }</span><br/>
+	* 아이디 : <input type="text" name="id" size="10" value="${member.id }" /><br/>
 		${idMsg }
 		<br/>
-		비밀번호 : <input type="password" name="password" size="10"/>${pwMsg }<br/>
-		<span style="color:teal">${msg }</span><br/>
-		
+	* 비밀번호 : <input type="password" name="password" size="10"/><br/>
+		${pwMsg }
 		<br/>
-		전화번호 : 
+	* 전화번호 : 
 		<select name="phone1">
 			<option value="010">010</option>
 			<option value="011">011</option>
@@ -45,11 +42,7 @@
 		주소 : <input type="text" name="address" size="10" value="${member.address }"/>
 		<br/>
 		<br/>
-		<input type="submit" value="회원가입"/><br/>
-		<div style="color:orange">
-		${msg }
-		</div>
-	</form>
-	</header>
+		<button type="submit" value="회원가입!">회원가입!</button>
+</form>
 </body>
 </html>

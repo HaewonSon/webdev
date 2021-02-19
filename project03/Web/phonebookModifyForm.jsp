@@ -7,18 +7,16 @@
 <link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
-<title>연락처 프로그램 - 회원 수정 </title>
+<title>Member Info </title>
 </head>
-
+<h2>Member Info</h2>
 
 <body>
 
 <form action="PhoneBookModifyServlet" method="post">
-	이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
-		<br/>
-		${nameMsg }
-		<br/>
-		전화번호 : 
+	* 이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
+		${nameMsg }<br/>
+	* 전화번호 : 
 		<select name="phone1">
 			<option value="010">010</option>
 			<option value="011">011</option>
@@ -41,10 +39,7 @@
 		</select>
 		<br/>
 		<br/>
-		<input type="submit" value="회원수정"/><br/>
-		<div style="color:orange">
-		${msg }
-		</div>
+		<button type="submit" value="회원수정">회원수정</button>
 </form>
 
 </body>

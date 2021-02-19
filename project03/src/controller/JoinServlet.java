@@ -35,7 +35,7 @@ public class JoinServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request
 			, HttpServletResponse response) 
 					throws ServletException, IOException {
-//		회원가입 하도록 화면 이동 
+//		회원가입 폼으로 화면 이동 
 		response.setCharacterEncoding("utf-8");
 		RequestDispatcher disp = request.getRequestDispatcher("joinForm.jsp");
 		disp.forward(request, response);
@@ -44,8 +44,11 @@ public class JoinServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request
 			, HttpServletResponse response) 
 					throws ServletException, IOException {
+		
+//		한글 처리하도록 인코딩 설정 
 		request.setCharacterEncoding("utf-8");
-//		회원가입 처리 : insert
+		
+//		회원가입 처리 : VO에 정보를 담는다 
 		LoginVO login = new LoginVO();
 		String name = request.getParameter("name");
 		String id = request.getParameter("id");
@@ -106,7 +109,6 @@ public class JoinServlet extends HttpServlet {
 			
 //		모두 정상적으로 입력 시 회원 등록 	
 		}else {
-//			Insert 
 			login.setName(name);
 			login.setPassword(password);
 			login.setId(id);
@@ -135,7 +137,7 @@ public class JoinServlet extends HttpServlet {
 //		문자를 입력한 경우 
 		char[] numbers = phonenum.toCharArray();
 		for(char num : numbers) {
-//			아스키코드 
+//			아스키코드로 비교 
 			if(num>'9'||num<'0') {
 				return true;
 			}
@@ -144,12 +146,14 @@ public class JoinServlet extends HttpServlet {
 		return false;
 	}
 	
+//	아이디 중복체크 메소드 
 	private boolean SearchId(String id) {
 		MemberService mService = new MemberService();
 		boolean answer = mService.SearchId(id);
 		return answer;
 	}
-
+	
+//	전화번호 중복체크 메소드 
 	public boolean SearchPhoneNum(String phonenum, String id, int membernum) {
 		MemberService mService = new MemberService();
 		boolean answer = mService.SearchPhoneNum(phonenum,id, membernum);

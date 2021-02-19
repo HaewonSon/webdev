@@ -1,5 +1,12 @@
 package vo;
 
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 19.
+ * @package  : vo
+ * @filename : PhonebookVO.java
+ * @description : 한 명의 연락처 정보를 저장하는 VO
+ */
 public class PhonebookVO {
 	private int membernum;
 	private String name;

@@ -16,6 +16,13 @@ import vo.*;
 /**
  * Servlet implementation class LoginServlet
  */
+/**
+ * @작성자 : 손해원 
+ * @작성일 : 2021. 2. 19.
+ * @package  : controller
+ * @filename : LoginServlet.java
+ * @description : 로그인 처리를 담당하는 서블릿 
+ */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -65,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect("MainServlet");
 			}else {
 	//			비정상 로그인 
-				request.setAttribute("pwMsg", "아이디나 패스워드가 잘못되었습니다.");
+				request.setAttribute("pwMsg", "아이디나 패스워드가 일치하지 않습니다.");
 				RequestDispatcher disp = request.getRequestDispatcher("loginForm.jsp");
 				disp.forward(request, response);
 			}

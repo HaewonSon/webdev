@@ -6,21 +6,21 @@
 <link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Add Member</title>
 </head>
 
 <body>
-<header class="welcome-header">
-	<h2 class="welcome-header_title">Add Member</h2>
-		<p class="welcome-header_text">
+<header>
+	<h2 >Add Member</h2>
+		<p>
 		추가할 연락처의 정보를 입력해 주세요. :-) 
 		</p>
 	
 	<form  action="PhoneBookInsertServlet" method="post" name="insertForm">
-		이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
+	* 이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>
 		${nameMsg }
 		<br/>
-		전화번호 : 
+	* 전화번호 : 
 		<select name="phone1">
 			<option value="010">010</option>
 			<option value="011">011</option>
@@ -43,10 +43,7 @@
 		</select>
 		<br/>
 		<br/>
-		<input type="submit" value="OK"/><br/>
-		<div style="color:orange">
-		${msg }
-		</div>
+		<button type="submit" value="OK!">OK!</button>
 	</form>
 	</header>
 

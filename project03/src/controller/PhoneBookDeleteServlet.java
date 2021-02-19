@@ -14,7 +14,7 @@ import service.MemberService;
  * Servlet implementation class PhoneBookDeleteServlet
  */
 /**
- * @작성자 : user
+ * @작성자 : 손해원 
  * @작성일 : 2021. 2. 16.
  * @package  : controller
  * @filename : PhoneBookDeleteServlet.java

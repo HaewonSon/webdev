@@ -13,7 +13,7 @@ import vo.PhonebookVO;
  * @작성일 : 2021. 2. 7.
  * @package  : dao
  * @filename : PhonebookDAO.java
- * @description :
+ * @description : DB와 연동해 직접적인 처리를 담당하는 DAO
  */
 public class PhonebookDAO {
 	
@@ -21,13 +21,14 @@ public class PhonebookDAO {
 	
 //	회원가입 
 	public void joinInsert(LoginVO login) {
+//		db 연결 
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
-		
+//		쿼리 입력 
 		String query = "insert into login_info values(?,?,?) ";
 		
 		DBConnection dbCon = DBConnection.getInstance();
-		
+//		사용자가 입력한 정보를 데이터베이스에 보내도록 한다 
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, login.getId());
@@ -46,10 +47,13 @@ public class PhonebookDAO {
 	
 //	로그인 처리 
 	public LoginVO selectByIdPw(String id, String password) {
+		
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs 			= null;
+		
 		LoginVO login = new LoginVO();
+		
 		StringBuilder query = new StringBuilder();
 		query.append("select name, id 		");
 		query.append("  from login_info		");
@@ -86,7 +90,7 @@ public class PhonebookDAO {
 	} //selectByIdPw end 
 		
 	
-//	연락처 - 모든 회원 
+//	연락처 - 모든 회원 보기 
 	public ArrayList<PhonebookVO> selectAll(String id){
 		
 		Connection con 			= dbCon.getConnection();
@@ -104,7 +108,7 @@ public class PhonebookDAO {
 			pstmt.setString(1, id);
 			rs 	= pstmt.executeQuery();
 			
-//			ArrayList에 담는다. 
+//			VO의 회원정보 ArrayList에 담는다. 
 			while(rs.next()) {
 				PhonebookVO phonebook = new PhonebookVO();
 				phonebook.setName(rs.getString("name"));
@@ -130,9 +134,10 @@ public class PhonebookDAO {
 
 //	ID로 검색 
 	public PhonebookVO selectById(String id) {
+		
 		Connection con 			= null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		ResultSet rs 			= null;
 		PhonebookVO phonebook   = null;
 		DBConnection dbCon = DBConnection.getInstance();
 		String query = "select * from phonebook where id = ?";
@@ -199,7 +204,7 @@ public class PhonebookDAO {
 	public void updateMember(PhonebookVO phonebook) {
 		Connection con 			= null;
 		PreparedStatement pstmt = null;
-		DBConnection dbCon = DBConnection.getInstance();
+		DBConnection dbCon 		= DBConnection.getInstance();
 		
 		StringBuilder query = new StringBuilder();
 		query.append("update phonebook		");
@@ -208,7 +213,6 @@ public class PhonebookDAO {
 		query.append("	   , address = ?	");
 		query.append("	   , groupnum = ?	");
 		query.append(" where membernum = ? 	");
-
 		
 		try {
 			con = dbCon.getConnection();
@@ -243,7 +247,6 @@ public class PhonebookDAO {
 		try {
 			
 			pstmt 	= con.prepareStatement(query); 
-//			접속한 아이디의 연락처만 보여준다. 
 			pstmt.setInt(1, membernum);
 			rs 	= pstmt.executeQuery();
 
@@ -265,7 +268,7 @@ public class PhonebookDAO {
 	}
 
 
-//	회원 삭제 
+//	연락처 - 회원 삭제 
 	public void deletePhonebook(int membernum) {
 		
 		Connection con 			= null;
@@ -289,7 +292,7 @@ public class PhonebookDAO {
 		
 	}
 
-
+//	회원가입한 회원의 정보 수정 
 	public void updateLogin(LoginVO login) {
 		
 		Connection con 			= null;
@@ -301,7 +304,6 @@ public class PhonebookDAO {
 		query.append("   set name = ? 		");
 		query.append("  	,password = ? 		");
 		query.append(" where id = ?		 	");
-
 		
 		try {
 			con = dbCon.getConnection();
@@ -322,6 +324,7 @@ public class PhonebookDAO {
 
 //	회원가입한 회원 정보만 보여주는 메소드 
 	public int selectMembernum(String id) {
+		
 		int membernum = 0;
 		
 		Connection con 			= dbCon.getConnection();
@@ -349,14 +352,16 @@ public class PhonebookDAO {
 		return membernum;
 	}
 
-//	카테고리별 검색 
-	public ArrayList<PhonebookVO> searchByCategory(String category, String search, String id) {
+//	연락처 - 카테고리별 검색 
+	public ArrayList<PhonebookVO> searchByCategory(String category, 
+										String search, String id) {
+		
+		ArrayList<PhonebookVO> members = new ArrayList<PhonebookVO>();
+		
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs			= null;
-		StringBuilder query = new StringBuilder();
-		
-		ArrayList<PhonebookVO> members = new ArrayList<PhonebookVO>();
+		StringBuilder query 	= new StringBuilder();
 		
 		query.append("	select p.membernum, p.name,p.id, p.groupnum, p.phonenum, p.address ");
 		query.append("	from phonebook p inner join group_info g on ");
@@ -397,9 +402,9 @@ public class PhonebookDAO {
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs			= null;
-		StringBuilder query = new StringBuilder();
 		boolean answer = false;
 		
+		StringBuilder query = new StringBuilder();
 		query.append("	select * from phonebook where phonenum=? and id=?	");
 		
 		try {
@@ -431,9 +436,9 @@ public class PhonebookDAO {
 		Connection con 			= dbCon.getConnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs			= null;
-		StringBuilder query = new StringBuilder();
 		boolean answer = false;
 		
+		StringBuilder query = new StringBuilder();
 		query.append("	select * from login_info where id=?	");
 		
 		try {

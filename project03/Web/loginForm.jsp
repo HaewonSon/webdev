@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="styles/styles.css">
 <head>
 <meta charset="UTF-8">
-<title>LogIn </title>
+<title>Log In </title>
 </head>
 <body>
 

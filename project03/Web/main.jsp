@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
-<title>MainPage</title>
+<title>My Member List</title>
 </head>
 
 <header>
@@ -26,8 +26,7 @@
 	<option value="group_name">그룹</option>
 </select>
 <input type="text" name="search" size="10"/>
-<input type="submit" value="검색"/>
-
+<input type="submit" value="검색"/> 
 </form>
 
 <br/>
@@ -50,10 +49,8 @@
 			<td>${member.address}</td>
 			<td>${member.groupname }</td>
 			<!-- 각 행의 멤버 수정, 삭제하기 -->
-			<%-- <td><a href="PhoneBookModifyServlet?membernum=${member.membernum }">수정</a></td> --%>
 			<td><button type="button" onclick="location.href='PhoneBookModifyServlet?membernum=${member.membernum }'">수정</button></td>
 			<td><button type="button" onclick="location.href='PhoneBookDeleteServlet?membernum=${member.membernum }'">삭제</button></td>
-			<%-- <td><a href="PhoneBookDeleteServlet?membernum=${member.membernum }">삭제</a></td> --%>
 		</tr>
 	</c:forEach>
 </table>	

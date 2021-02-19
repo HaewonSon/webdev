@@ -15,11 +15,11 @@ import service.MemberService;
 import vo.PhonebookVO;
 
 /**
- * @작성자 : 손해원 
+ * @작성자 : 손해원
  * @작성일 : 2021. 2. 16.
- * @package  : controller
+ * @package : controller
  * @filename : SearchServlet.java
- * @description : 연락처 검색 기능의 서블릿 
+ * @description : 연락처 검색 기능의 서블릿
  */
 @WebServlet("/SearchServlet")
 public class SearchServlet extends HttpServlet {
@@ -34,20 +34,24 @@ public class SearchServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		if(id == null) {
+		String id = (String) session.getAttribute("id");
+		
+		if (id == null) {
 			response.sendRedirect("MainServlet");
-		}else {
+		} else {
 			String category = request.getParameter("category");
 			String search = request.getParameter("search");
-			MemberService mService = new MemberService();
-			ArrayList<PhonebookVO> members = mService.searchByCategory(category, search, id);
+			
+			MemberService mService 			= new MemberService();
+			ArrayList<PhonebookVO> members  = mService.searchByCategory(category, search, id);
+			
 			request.setAttribute("members", members);
 			RequestDispatcher disp = request.getRequestDispatcher("main.jsp");
 			disp.forward(request, response);
-			
+
 		}
 
 	}

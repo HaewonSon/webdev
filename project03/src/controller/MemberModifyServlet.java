@@ -15,7 +15,7 @@ import vo.LoginVO;
 import vo.PhonebookVO;
 
 /**
- * @작성자 : 손해
+ * @작성자 : 손해원 
  * @작성일 : 2021. 2. 16.
  * @package  : controller
  * @filename : MemberModifyServlet.java
@@ -141,6 +141,8 @@ public class MemberModifyServlet extends HttpServlet {
 					request.setAttribute("pwMsg", "비밀번호가 일치하지 않습니다. ");
 					RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
 					disp.forward(request, response);
+					
+//				새로운 비밀번호와 비밀번호 확인이 일치하지 않을 경우 	
 				}else if(!newpassword.equals(newpasswordcheck)){
 					request.setAttribute("phone2", phone2);
 					request.setAttribute("phone3", phone3);
@@ -148,6 +150,8 @@ public class MemberModifyServlet extends HttpServlet {
 					request.setAttribute("newPwMsg", "새로운 비밀번호가 일치하지 않습니다. ");
 					RequestDispatcher disp = request.getRequestDispatcher("memberModifyForm.jsp");
 					disp.forward(request, response);
+					
+//				정상 처리시 비밀번호 정보 업데이트 후 화면 전환 
 				}else {
 					login.setName(name);
 					login.setId(id);
@@ -157,11 +161,12 @@ public class MemberModifyServlet extends HttpServlet {
 					session.invalidate();
 					response.sendRedirect("modifySuccessForm.jsp");
 				}
-				}
+			}
 			
 		}
 		
 	}// dopost end
+	
 //	전화번호 양식 확인 메소드 
 	private boolean phoneNumChecker(String phonenum) {
 //		전화번호의 길이가 11자리가 아닌 경우 
@@ -171,7 +176,7 @@ public class MemberModifyServlet extends HttpServlet {
 //		문자를 입력한 경우 
 		char[] numbers = phonenum.toCharArray();
 		for(char num : numbers) {
-//			아스키코드
+//			아스키코드로 비교 
 			if(num>'9'||num<'0') {
 				return true;
 			}
@@ -180,7 +185,7 @@ public class MemberModifyServlet extends HttpServlet {
 		return false;
 	}
 	
-
+//	전화번호 중복체크 메소드 
 	public boolean SearchPhoneNum(String phonenum, String id, int membernum) {
 		MemberService mService = new MemberService();
 		boolean answer = mService.SearchPhoneNum(phonenum,id,membernum);

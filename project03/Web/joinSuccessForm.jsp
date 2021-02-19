@@ -7,17 +7,11 @@
 <meta charset="UTF-8">
 <title>Welcome!</title>
 </head>
-
-
-
+<h2>Welcome!  </h2>
 <body>
-
-<h2>회원가입이 완료되었습니다. </h2>
-
 <form id="joinSuccessForm" action="LoginServlet" method="post">
-<p>로그인하세용</p>
-
-<input type="submit" value="로그인하깅"/>
+<p>회원가입이 완료되었습니다. </p>
+<button type="submit" value="로그인">로그인</button>
 </form>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class PhoneBookModifyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		if (id == null) {
-//			session에서 꺼낸 id -> 공백 
+//			로그인하지 않았을때  
 			response.sendRedirect("MainServlet");
 //			 -> loginForm.jsp
 		}else {
@@ -98,14 +98,14 @@ public class PhoneBookModifyServlet extends HttpServlet {
 				request.setAttribute("phoneMsg", "올바른 번호가 아니옵니다.");
 				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
 				disp.forward(request, response);
-				
+//			이미 존재하는 전화번호인 경우 
 			}else if(SearchPhoneNum(phonenum,id,membernum)) {
 				PhonebookVO member = new PhonebookVO(name,phonenum,id,address);
 				request.setAttribute("member", member);
 				request.setAttribute("phoneMsg", "전화번호 중복.");
 				RequestDispatcher disp = request.getRequestDispatcher("phonebookModifyForm.jsp");
 				disp.forward(request, response);
-				
+//			정상 처리시 업데이트 진행 
 			}else {
 					phonebook.setId(id);
 					phonebook.setName(name);
@@ -141,7 +141,7 @@ public class PhoneBookModifyServlet extends HttpServlet {
 			return false;
 		}
 		
-
+//		전화번호 중복체크 메소드 
 		public boolean SearchPhoneNum(String phonenum,String id, int membernum) {
 			MemberService mService = new MemberService();
 			boolean answer = mService.SearchPhoneNum(phonenum,id,membernum);
