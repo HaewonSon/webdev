@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="styles/styles.css">
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
 <title>Welcome!</title>
 </head>
+
+
+
 <body>
 
 <h2>회원가입이 완료되었습니다. </h2>

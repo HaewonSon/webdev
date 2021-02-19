@@ -4,10 +4,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
 <title>연락처 프로그램 - 회원 수정 </title>
 </head>
+
+
 <body>
 
 <form action="PhoneBookModifyServlet" method="post">

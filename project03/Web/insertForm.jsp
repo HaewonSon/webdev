@@ -3,10 +3,12 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
 <body>
 <header class="welcome-header">
 	<h2 class="welcome-header_title">Add Member</h2>

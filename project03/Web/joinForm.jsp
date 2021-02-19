@@ -3,11 +3,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
-<link rel="stylesheet" href="styles.css" />
 <meta charset="UTF-8">
 <title> 회원가입 </title>
 </head>
+
+
 <body>
 	<header class="welcome-header">
 	<h2 class="welcome-header_title">Join Us</h2>

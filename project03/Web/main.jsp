@@ -5,18 +5,20 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
-<link rel="stylesheet" href="styles/main.css"/>
 <meta charset="UTF-8">
 <title>MainPage</title>
 </head>
-<h4>${name }님 안녕하세요 :-)</h4>
+
+<header>
+<h5>${name }님 안녕하세요 :-)</h5>
+</header>
 <body>
-<p><a href="LogoutServlet">LogOut</a> <a href="MemberModifyServlet">My Page</a></p>
-<br/>
-<br/>
-<br/>
-<h2>Member List </h2>
+<p><a href="LogoutServlet" >Log out</a> / <a href="MemberModifyServlet">My page</a></p>
+<div>
+<h1>Member List</h1>
+
 <form action="SearchServlet" method="post"  >
 <select name="category">
 	<option value="name">이름</option>
@@ -25,18 +27,12 @@
 </select>
 <input type="text" name="search" size="10"/>
 <input type="submit" value="검색"/>
+
 </form>
 
-<style>
-table {
-	width: 100%;
-	}
-td {
-	padding: 15px;
-	border: 1px solid darkgray;
-	}
-</style>
-
+<br/>
+<br/>
+<br/>
 
 <!-- 연락처 목록  -->
 <table class="table">
@@ -54,17 +50,19 @@ td {
 			<td>${member.address}</td>
 			<td>${member.groupname }</td>
 			<!-- 각 행의 멤버 수정, 삭제하기 -->
-			<td><a href="PhoneBookModifyServlet?membernum=${member.membernum }">수정</a></td>
-			<td><a href="PhoneBookDeleteServlet?membernum=${member.membernum }">삭제</a></td>
+			<%-- <td><a href="PhoneBookModifyServlet?membernum=${member.membernum }">수정</a></td> --%>
+			<td><button type="button" onclick="location.href='PhoneBookModifyServlet?membernum=${member.membernum }'">수정</button></td>
+			<td><button type="button" onclick="location.href='PhoneBookDeleteServlet?membernum=${member.membernum }'">삭제</button></td>
+			<%-- <td><a href="PhoneBookDeleteServlet?membernum=${member.membernum }">삭제</a></td> --%>
 		</tr>
 	</c:forEach>
 </table>	
 <br>
 
-<a href="PhoneBookInsertServlet" class="">연락처추가</a>
+<button type="submit" onclick="location.href='PhoneBookInsertServlet'">연락처 추가</button>
+<button type="submit" onclick="location.href='MainServlet'">전체 목록</button>
 
-<a href="MainServlet">전체 목록</a>
-
+</div>
 
 </body>
 </html>

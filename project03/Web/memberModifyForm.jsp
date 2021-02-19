@@ -3,11 +3,13 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="styles/modify.css">
+<link rel="stylesheet" href="styles/main.css"/> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+
 <body>
 <form action="MemberModifyServlet" method="post">
 	이름 : <input type="text" name="name" size="10" value="${member.name }"/><br/>

@@ -1,3 +1,4 @@
+
 :root{
     --yellow: #fae100;
     --salmon: #f7dbb8;
@@ -23,7 +24,6 @@
 	opacity:0.7;
 }
 
-
 #login-form {
   display: flex;
   flex-direction: column;
@@ -43,7 +43,7 @@
 }
 
 #login-form input::placeholder {
-  color: rgba(0, 0, 0, 0.4);
+  color: #d4c9b8;
 }
 #login-form input:focus {
   border-bottom : 1px solid;
@@ -63,9 +63,9 @@
 }
 
 #login-form a{
-  text-align: center;
-  text-decoration: none;
-  color: var(--black);
-  font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--black);
+    font-size: 14px;
   
 }

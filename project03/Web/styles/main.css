@@ -1,27 +1,73 @@
 @charset "UTF-8";
 
 
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300&display=swap');
+
+
+header{
+	text-align: center;
+}
+body {	
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #423629;
+  	background-color: #fcfcfc; 
+}
+
+form{
+	text-align: center;
+	font-family: 'Noto Sans KR', sans-serif;
+	color: #423629;
+  	background-color: #fcfcfc; 
+}
+.input{
+	font-family: 'Noto Sans KR', sans-serif;
+	width:auto;
+    background-color: #d4b084;
+    border: 1px #d4b084;
+    border-radius: 1px;
+    color:#fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+}
+p{
+	text-align: center;
+}
+a{
+	text-align: center;
+}
+
+div{
+	margin: 50px;
+	background-color: fcf4eb;
+	text-align: center;
+}
+
+table {
+	width: 100%;
+}
+td {
+	padding: 15px;
+	border: 1px solid #e9ded2;
+	border-radius: 2px;
+	margin:1px;
+}
 
 button {
-	overflow: visible;
+	font-family: 'Noto Sans KR', sans-serif;
+	width:auto;
+    background-color: #d4b084;
+    border: 1px #d4b084;
+    border-radius: 1px;
+    color:#fff;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
 }
-
-button, select {
-	text-transform: none;
+.a{
+	text-align: center;
 }
-
-input[type="button"], input[type="reset"], input[type="submit"] {
-	-webkit-appearance: button;
-	cursor: pointer;
-}
-
-button[disabled], html input[disabled] {
-	cursor: default;
-}
-
-button::-moz-focus-inner, input::-moz-focus-inner {
-	border: 0;
-	padding: 0;
-}
-
-
